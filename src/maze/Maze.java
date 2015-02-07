@@ -109,10 +109,9 @@ public class Maze {
       @    ensures !\result;
       @*/
 	public /*@ pure @*/ boolean isPossible(int newRow, int newCol) {
-		// check if inside maze
-                // TO BE IMPLEMENTED
-                throw new RuntimeException();
-	}
+        // check if inside maze
+        return !(newRow < 0 || newRow >= maze.length) && newCol > 0 && newCol < maze[0].length;
+    }
 
 
 	/**
