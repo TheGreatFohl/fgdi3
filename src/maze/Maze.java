@@ -143,8 +143,6 @@ public class Maze {
       @    ensures !\result;              
       @	 assignable \nothing;
       @
-      @ also
-      @
       @ public exceptional_behavior
       @  requires direction != MOVE_UP;
       @  requires direction != MOVE_DOWN;
