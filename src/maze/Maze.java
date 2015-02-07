@@ -144,6 +144,7 @@ public class Maze {
       @	 assignable \nothing;
       @
       @ public exceptional_behavior
+      @  requires true;
       @  signals (Exception e) direction < 0 || direction > MOVE_RIGHT;
       @*/
 	public boolean move(int direction) {
