@@ -1,0 +1,96 @@
+\profile "Java Profile";
+
+\settings {
+"#Proof-Settings-Config-File
+#Sat Feb 07 13:39:33 CET 2015
+[StrategyProperty]VBT_PHASE=VBT_SYM_EX
+[SMTSettings]useUninterpretedMultiplication=true
+[SMTSettings]SelectedTaclets=
+[StrategyProperty]METHOD_OPTIONS_KEY=METHOD_EXPAND
+[StrategyProperty]USER_TACLETS_OPTIONS_KEY3=USER_TACLETS_OFF
+[StrategyProperty]SYMBOLIC_EXECUTION_ALIAS_CHECK_OPTIONS_KEY=SYMBOLIC_EXECUTION_ALIAS_CHECK_NEVER
+[StrategyProperty]LOOP_OPTIONS_KEY=LOOP_INVARIANT
+[StrategyProperty]USER_TACLETS_OPTIONS_KEY2=USER_TACLETS_OFF
+[StrategyProperty]USER_TACLETS_OPTIONS_KEY1=USER_TACLETS_OFF
+[StrategyProperty]QUANTIFIERS_OPTIONS_KEY=QUANTIFIERS_NON_SPLITTING_WITH_PROGS
+[StrategyProperty]NON_LIN_ARITH_OPTIONS_KEY=NON_LIN_ARITH_NONE
+[SMTSettings]instantiateHierarchyAssumptions=true
+[StrategyProperty]AUTO_INDUCTION_OPTIONS_KEY=AUTO_INDUCTION_OFF
+[StrategyProperty]DEP_OPTIONS_KEY=DEP_ON
+[StrategyProperty]BLOCK_OPTIONS_KEY=BLOCK_CONTRACT
+[StrategyProperty]CLASS_AXIOM_OPTIONS_KEY=CLASS_AXIOM_FREE
+[StrategyProperty]SYMBOLIC_EXECUTION_NON_EXECUTION_BRANCH_HIDING_OPTIONS_KEY=SYMBOLIC_EXECUTION_NON_EXECUTION_BRANCH_HIDING_OFF
+[StrategyProperty]QUERY_NEW_OPTIONS_KEY=QUERY_OFF
+[Strategy]Timeout=-1
+[Strategy]MaximumNumberOfAutomaticApplications=1000
+[SMTSettings]integersMaximum=2147483645
+[Choice]DefaultChoices=assertions-assertions\\:safe , initialisation-initialisation\\:disableStaticInitialisation , intRules-intRules\\:arithmeticSemanticsIgnoringOF , programRules-programRules\\:Java , runtimeExceptions-runtimeExceptions\\:ban , JavaCard-JavaCard\\:on , Strings-Strings\\:on , modelFields-modelFields\\:showSatisfiability , bigint-bigint\\:on , sequences-sequences\\:on , reach-reach\\:on , integerSimplificationRules-integerSimplificationRules\\:full , optimisedSelectRules-optimisedSelectRules\\:on , wdOperator-wdOperator\\:L , wdChecks-wdChecks\\:off
+[SMTSettings]useConstantsForBigOrSmallIntegers=true
+[StrategyProperty]STOPMODE_OPTIONS_KEY=STOPMODE_DEFAULT
+[StrategyProperty]QUERYAXIOM_OPTIONS_KEY=QUERYAXIOM_ON
+[SMTSettings]maxGenericSorts=2
+[SMTSettings]integersMinimum=-2147483645
+[SMTSettings]invariantForall=false
+[SMTSettings]UseBuiltUniqueness=false
+[SMTSettings]explicitTypeHierarchy=false
+[Strategy]ActiveStrategy=Simple JavaCardDL
+[StrategyProperty]SPLITTING_OPTIONS_KEY=SPLITTING_DELAYED
+"
+}
+
+\sorts {
+  S;
+}
+
+\functions {
+  S a;
+  S b;
+}
+
+
+\predicates {
+  p(S, S);
+}
+
+\problem {
+     \forall S x;
+       \forall S y;
+         \forall S z; (p(x, y) & p(y, z) -> p(x, z))
+   & \forall S x; \forall S y; (p(x, y) -> !p(y, x))
+   & \exists S x; (p(a, x) & p(x, b))
+-> !p(b, a)
+
+}
+
+\proof {
+(keyLog "0" (keyUser "hannes" ) (keyVersion "53b8d266f3d8b8641cba8cf346d399fabd3eb847"))
+
+(autoModeTime "0")
+
+(branch "dummy ID"
+(rule "impRight" (formula "1") (userinteraction))
+(rule "commute_and" (formula "1") (term "0") (userinteraction))
+(rule "andLeft" (formula "1") (userinteraction))
+(rule "andLeft" (formula "1") (userinteraction))
+(rule "exLeft" (formula "3") (inst "sk=x_2") (userinteraction))
+(rule "allLeft" (formula "2") (inst "t=a") (userinteraction))
+(rule "allLeft" (formula "2") (inst "t=x_2") (userinteraction))
+(rule "allLeft" (formula "2") (inst "t=b") (userinteraction))
+(rule "impLeft" (formula "2") (userinteraction))
+(branch "Case 1"
+   (rule "closeAntec" (formula "5") (ifseqformula "6") (userinteraction))
+)
+(branch "Case 2"
+   (rule "allLeft" (formula "1") (inst "t=a") (userinteraction))
+   (rule "allLeft" (formula "1") (inst "t=b") (userinteraction))
+   (rule "impLeft" (formula "1") (userinteraction))
+   (branch "Case 1"
+      (rule "closeAntec" (formula "3") (ifseqformula "8") (userinteraction))
+   )
+   (branch "Case 2"
+      (rule "closeAntec" (formula "1") (ifseqformula "9") (userinteraction))
+   )
+)
+)
+
+}

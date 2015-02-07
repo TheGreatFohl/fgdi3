@@ -1,0 +1,21 @@
+Aufgabe 3d)
+
+Es macht sinn für die Move funktion, da move den internen zustand ändert.
+Die anderen Funktionen metoden sind pure und damit ändern sie den internen Zustand also nicht.
+
+Aufgabe 3c)
+
+Move könnte den Spieler außerhalb des Feldes oder auf einer Wand platzieren,
+daher muss verifiziert werden, dass der Spieler auf einer validen Position landet.
+
+
+Aufgabe 3e)
+
+
+/*@
+  private invariant
+  playerRow >= 0 && playerRow < maze.length &&
+  (playerCol >= 0 && playerCol < maze[playerRow].length && maze[playerRow][playerCol] != WALL);
+@*/
+
+könnte Verletzt werden, da move die Variable playerRow und playerCol verändert.
