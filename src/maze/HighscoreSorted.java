@@ -23,18 +23,45 @@ public class HighscoreSorted extends Highscore {
 	/** 
 	 * returns an index with a maximal score or <tt>-1</tt> if the high score list is empty
 	 */
+	/*@ public normal_behavior
+	  @ requires size > 0;
+	  @ ensures (\forall int i; i >= 0 && i < size; \result <= highscores[i].score);
+	  @
+	  @ also
+	  @
+	  @ public normal_behavior
+	  @ requires size == 0;
+	  @ ensures \result == -1;
+	  @
+	 */
 	public int max() {
-		// to be implemented
-		throw new RuntimeException("To be implemented.");
+		if (size == 0) {
+			return -1;
+		} else {
+			return highscores[highscores.length - 1].getScore();
+		}
 	}
 	
 	/*@ private normal_behavior 
 	  @ requires in != null && at >= 0 && at<in.length;
 	  @ ensures in[at] == rec;
-	  @ ensures (\forall int i; i>at && i<in.length; in[i] == \old(in[i-1])); 
+	  @ ensures (\forall int i; i>at && i<in.length; in[i] == \old(in[i-1]));
 	  @ assignable in[at..in.length];
 	  @
-	  @ // fill in the missing exceptional specification cases
+	  @ also
+	  @
+	  @ private exceptional_behavior
+	  @ requires in == null;
+	  @ signals_only Exception;
+	  @ assignable \everything;
+	  @
+	  @ also
+	  @
+	  @ private exceptional_behavior
+	  @ requires !(at >= 0 && at < in.length);
+	  @ signals_only Exception;
+	  @ assignable \everything;
+	  @
 	  @*/
 	private void insertAt(/*@ nullable @*/ Record rec, int at, /*@ nullable @*/ Record[] in) {
 		if (in == null) {
@@ -47,10 +74,11 @@ public class HighscoreSorted extends Highscore {
 		int start = in.length - 1;
 		
 		// in the specification below complete the specification by replacing the placeholders YYY and ZZZ
-		// do not forget to uncomment (remove the double slashes) 
-		/*@ // loop_invariant start >= at && start < in.length && YYY;  
-		  @ // assignable in[at+1..in.length-1], start;
-		  @ // decreases ZZZ;
+		// do not forget to uncomment (remove the double slashes)
+		// because there is no invariant that says that in is sorted, this loop can not contain this invariant.
+		/*@  loop_invariant start >= at && start < in.length;
+		  @  assignable in[at+1..in.length-1], start;
+		  @  decreases start;
 		  @*/
 		while (start > at) {
 			in[start] = in[start - 1];
