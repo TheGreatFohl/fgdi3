@@ -127,7 +127,7 @@ public class Highscore {
 	  @ assignable min, size, highscores[*];
 	  @
 	  @ requires size == capacity && rec.getScore() <= minScore();
-	  @ ensures highscores == \old(highscores);
+	  @ ensures (\forall int x; x < highscores.length && x >= 0; highscores[x] == \old(highscores)[x] );
 	  @ ensures \result == rec;
 	  @
 	  @ requires size == capacity && rec.getScore() > minScore();
