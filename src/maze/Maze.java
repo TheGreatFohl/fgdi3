@@ -148,7 +148,7 @@ public class Maze {
       @ also
       @
       @ public exceptional_behavior
-      @  requires direction < 0 || direction > MOVE_RIGHT
+      @  requires direction < 0 || direction > MOVE_RIGHT;
       @*/
 	public boolean move(int direction) {
 		int newRow = playerRow;
