@@ -87,7 +87,7 @@ public class Maze {
       @ ensures \result == (maze[playerRow][playerCol] == EXIT);
       @*/
 	public /*@ pure @*/ boolean won() {
-        return isPossible(playerRow, playerCol) && maze[playerRow][playerCol] == EXIT;
+        return maze[playerRow][playerCol] == EXIT;
 	}
 
 	/** 
@@ -147,7 +147,7 @@ public class Maze {
       @
       @ public exceptional_behavior
       @  requires direction < 0 || direction > MOVE_RIGHT;
-      @  signals (IllegalArgumentException);
+      @  signals (IllegalArgumentException) true;
       @*/
 	public boolean move(int direction) {
 		int newRow = playerRow;
