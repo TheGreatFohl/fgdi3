@@ -127,7 +127,12 @@ public class Highscore {
 	  @ assignable min, size, highscores[*];
 	  @
 	  @ requires size == capacity && rec.getScore() <= minScore();
-	  @ ensures
+	  @ ensures highscores == \old(highscores);
+	  @ ensures \result == rec;
+	  @
+	  @ requires size == capacity && rec.getScore() > minScore();
+	  @ ensures (\exists int i; i >= 0 && i<size; highscores[i] == rec);
+	  @ ensures \result == \old(highscores[\old(min)]);
 	  @*/
     public /*@ nullable @*/ Record add(Record rec) {
         if (size < capacity) {
