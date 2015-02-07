@@ -44,7 +44,7 @@ public class Highscore {
 
     /**
      * creates the highscore list with <tt>capacity</tt> slots to be filled
-     * @param capacity the maximum number of slots (list entries)
+     * @param p_capacity the maximum number of slots (list entries)
      */
 	/*@ public normal_behavior
 	  @ requires p_capacity > 0;
